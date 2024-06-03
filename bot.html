@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chatbot</title>
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body, html {
+      height: 100%;
+      margin: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: #f8f9fa;
+    }
+    .chat-container {
+      width: 100%;
+      max-width: 600px;
+      height: 80%;
+      display: flex;
+      flex-direction: column;
+      background-color: white;
+      border: 1px solid #dee2e6;
+      border-radius: 0.25rem;
+    }
+    .chat-header {
+      padding: 1rem;
+      background-color: #343a40;
+      color: white;
+      text-align: center;
+      border-bottom: 1px solid #dee2e6;
+    }
+    .chat-body {
+      flex: 1;
+      padding: 1rem;
+      overflow-y: auto;
+    }
+    .chat-footer {
+      display: flex;
+      padding: 1rem;
+      border-top: 1px solid #dee2e6;
+    }
+    .chat-footer input {
+      flex: 1;
+      margin-right: 0.5rem;
+    }
+    .message {
+      margin-bottom: 1rem;
+      padding: 0.75rem;
+      border-radius: 0.25rem;
+      background-color: #e9ecef;
+    }
+    .message.user {
+      background-color: #007bff;
+      color: white;
+      align-self: flex-end;
+    }
+  </style>
+</head>
+<body>
+
+<div class="chat-container">
+  <div class="chat-header">
+    Chatbot
+  </div>
+  <div class="chat-body">
+    <div class="message bot">
+      Hello! How can I assist you today?
+    </div>
+  </div>
+  <div class="chat-footer">
+    <input type="text" class="form-control" placeholder="Type a message...">
+    <button class="btn btn-primary">Send</button>
+  </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script>
+  $(document).ready(function() {
+    $('.chat-footer button').click(function() {
+      var message = $('.chat-footer input').val();
+      if (message.trim() !== '') {
+        $('.chat-body').append('<div class="message user">' + message + '</div>');
+        $('.chat-footer input').val('');
+        $('.chat-body').scrollTop($('.chat-body')[0].scrollHeight);
+      }
+    });
+    $('.chat-footer input').keypress(function(e) {
+      if (e.which == 13) {
+        $('.chat-footer button').click();
+      }
+    });
+  });
+</script>
+
+</body>
+</html>
